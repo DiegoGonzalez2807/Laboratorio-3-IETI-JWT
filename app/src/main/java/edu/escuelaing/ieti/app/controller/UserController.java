@@ -16,7 +16,7 @@ import edu.escuelaing.ieti.app.dto.UserDto;
 
 
 @RestController
-@RequestMapping("/API/mongodb/users")
+@RequestMapping("/v1/user")
 public class UserController {
     //Conexion con userService
     private final UserService userService;
@@ -71,14 +71,18 @@ public class UserController {
 
 /**
  * Funcion generada para crear un usuario de acuerdo con los parametros
- * dados por el cliente 
+ * dados por el cliente
+ * CAMBIOS PARA INGRESAR CON CONTRASEÑA
+ * Se usa el constructor de USER donde se usa como parametro un UserDTO
  * @param user
  * @return
  */
  @PostMapping
- public ResponseEntity<UserDto> create( @RequestBody User user ) {
+ public ResponseEntity<UserDto> create( @RequestBody UserDto user ) {
     try{
-        return new ResponseEntity<>(modelMapper.map(userService.create(user), UserDto.class), HttpStatus.ACCEPTED);
+        User newUser = new User(user);
+        userService.create(newUser);
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
     catch(UserServicePersistenceException ex){
         return new ResponseEntity<>(null,HttpStatus.FORBIDDEN);

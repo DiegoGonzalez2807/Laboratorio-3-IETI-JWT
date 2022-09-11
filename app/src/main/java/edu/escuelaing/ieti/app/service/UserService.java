@@ -21,4 +21,6 @@ public interface UserService
     List<User> findUsersWithNameOrLastNameLike(String name, String lastName);
 
     List<User> findUsersCreatedAfter(String startDate);
+
+    User findByEmail(String email);
 }  

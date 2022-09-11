@@ -60,6 +60,21 @@ import edu.escuelaing.ieti.app.service.UserService;
         return userRepository.findByCreatedAtGreaterThan(startDate);
     }
 
-	
+       @Override
+       public User findByEmail(String email) {
+           List<User> users = null;
+           try {
+               users = getAll();
+               for(User user: users){
+                   if(user.getEmail().equals(email)){
+                       return user;
+                   }
+               }
+               return null;
+           } catch (UserServicePersistenceException e) {
+               throw new RuntimeException(e);
+           }
+       }
 
-}
+
+   }

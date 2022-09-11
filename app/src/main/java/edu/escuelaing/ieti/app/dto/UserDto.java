@@ -9,15 +9,18 @@ public class UserDto {
     private String lastName;
     private String createdAt;
 
+    private String password;
+
     public UserDto() {
     }
 
-    public UserDto(String id, String name, String email, String lastName, String createdAt) {
+    public UserDto(String id, String name, String email, String lastName, String createdAt, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.lastName = lastName;
         this.createdAt = createdAt;
+        this.password = password;
     }
 
     public String getId() {
@@ -60,6 +63,11 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-    
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -92,5 +92,16 @@ public class UserServiceHashMap  implements UserService{
         return null;
     }
 
+    @Override
+    public User findByEmail(String email) {
+        List<User> users = getAll();
+        for(User user: users){
+            if(user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
+    }
+
 
 }
